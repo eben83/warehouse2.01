@@ -22,10 +22,14 @@
               <b-form-input type="password" v-model="password"></b-form-input>
             </b-col>
           </b-row>
+          <b-row>
+            <b-col>
+              <div v-show="error" class="error">{{this.errorMsg}}</div>
+            </b-col>
+          </b-row>
           <b-row align-h="center" class="mx-0 mb-0">
             <b-col>
-              <b-button class="mt-3 btn btn-primary">
-                <b-spinner small></b-spinner>
+              <b-button @click="signIn" class="mt-3 btn btn-primary">
                 Login
               </b-button>
             </b-col>
@@ -44,11 +48,17 @@
 </template>
 
 <script>
+import firebase from "firebase/app";
+import "firebase/auth"
+
 export default {
   name: "loginView",
   data: () => ({
     email: null,
-    password: null
+    password: null,
+    loading: false,
+    error: null,
+    errorMsg: ''
   }),
   beforeCreate() {
   },
@@ -62,7 +72,21 @@ export default {
   },
   updated() {
   },
-  methods: {},
+  methods: {
+    signIn() {
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+          .then(() => {
+            this.$router.push({name: 'home'})
+            console.log(firebase.auth().currentUser.uid)
+            this.error = false
+            this.errorMsg = ''
+          })
+          .catch((err) => {
+            this.error = true
+            this.errorMsg = err.message
+      })
+    },
+  },
   computed: {},
 }
 </script>
