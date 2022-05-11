@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <nav-bar />
     <div>
       <b-row>
         <b-col>
@@ -44,10 +43,8 @@
 
 <script>
 
-import NavBar from "@/components/nav-bar";
 export default {
   name: 'HomeView',
-  components: {NavBar},
   data: () => ({
     cargoTable: {
       resultsPerPage: 10,
