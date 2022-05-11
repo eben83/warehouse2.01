@@ -8,24 +8,35 @@
         <b-form>
           <b-row class="mb-0 px-0">
             <b-col cols="12" class="px-0">
-              <label>Username</label>
+              <label>
+                <font-awesome-icon icon="fa-solid fa-at" />
+                Email
+              </label>
               <b-form-input></b-form-input>
             </b-col>
             <b-col cols="12" class="px-0 mt-2">
-              <label>Password</label>
+              <label>
+                <font-awesome-icon icon="fa-solid fa-user-secret" />
+
+                Password
+              </label>
               <b-form-input type="password"></b-form-input>
             </b-col>
           </b-row>
           <b-row align-h="center" class="mx-0 mb-0">
-            <b-button class="mt-3 primary" size="sm"  block squared>
-              <b-spinner small></b-spinner>
-              Login
-            </b-button>
-          </b-row>
-          <b-row class="mx-0">
-            <b-button class="mt-3 primary-no-border" size="sm" variant="outline-primary" block squared>
-              Forgot Password?
-            </b-button>
+            <b-col>
+              <b-button class="mt-3 btn btn-primary">
+                <b-spinner small></b-spinner>
+                Login
+              </b-button>
+            </b-col>
+            <b-col>
+              <b-button class="mt-3">
+                <router-link :to="{ name: 'forgotPassword' }">
+                  Forgot Password?
+                </router-link>
+              </b-button>
+            </b-col>
           </b-row>
         </b-form>
       </b-card-text>
@@ -56,8 +67,14 @@ export default {
 
 <style scoped lang="scss">
 .login {
+  background-image: url("../assets/login-img.jpg");
+  background-position: center;
   position: relative;
   height: 100vh;
+
+  form {
+    padding: 2rem;
+  }
 
   .card {
     position: absolute;
@@ -65,5 +82,21 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+button {
+  color: #fff;
+  background-color: #2c3e50;
+
+  &:hover {
+    background-color: blue;
+  }
+
+  a {
+    color: #fff;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
 }
 </style>
