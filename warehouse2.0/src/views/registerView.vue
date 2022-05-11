@@ -1,5 +1,6 @@
 <template>
   <div class="register">
+    <LoadingView v-if="loading"/>
     <b-card class="card">
       <b-card-text>
         <b-form>
@@ -23,7 +24,7 @@
                 <font-awesome-icon icon="fa-solid fa-at" />
                 UserName
               </label>
-              <b-form-input v-model="UserName"></b-form-input>
+              <b-form-input v-model="userName"></b-form-input>
             </b-col>
             <b-col cols="12" class="px-0">
               <label>
@@ -42,8 +43,7 @@
           </b-row>
           <b-row align-h="center" class="mx-0 mb-0">
             <b-col>
-              <b-button class="mt-3 btn btn-primary">
-                <b-spinner small></b-spinner>
+              <b-button @click.prevent="register" class="mt-3 btn btn-primary">
                 Create
               </b-button>
             </b-col>
@@ -55,14 +55,20 @@
 </template>
 
 <script>
+import firebase from "firebase/app";
+import "firebase/auth"
+import db from '../firebase/config'
+import LoadingView from "@/components/loadingView";
 export default {
   name: "registerView",
+  components: {LoadingView},
   data: () => ({
-    firstName: null,
-    lastName: null,
-    email: null,
-    password: null,
-    userName: null,
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    userName: '',
+    loading: false,
   }),
   beforeCreate() {
   },
@@ -76,7 +82,28 @@ export default {
   },
   updated() {
   },
-  methods: {},
+  methods: {
+    async register() {
+      this.loading = true
+
+      const firebaseAuth = await firebase.auth()
+      //this creates the user login and saves it to the login
+      const createUser = await firebaseAuth.createUserWithEmailAndPassword(this.email, this.password)
+      //create user gets a response that we add it to result
+      const result = await createUser
+      //this then saves to collection user, if its not there it will create the user collection
+      const database = db.collection("users").doc(result.user.uid)
+
+      await database.set({
+        firstName: this.firstName,
+        lastName: this.lastName,
+        userName: this.userName,
+        email: this.email
+      })
+      this.loading = false
+      await this.$router.push({name: 'home'})
+    },
+  },
   computed: {},
 }
 </script>
