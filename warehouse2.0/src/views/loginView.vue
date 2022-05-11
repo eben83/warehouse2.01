@@ -12,15 +12,14 @@
                 <font-awesome-icon icon="fa-solid fa-at" />
                 Email
               </label>
-              <b-form-input></b-form-input>
+              <b-form-input v-model="email"></b-form-input>
             </b-col>
             <b-col cols="12" class="px-0 mt-2">
               <label>
                 <font-awesome-icon icon="fa-solid fa-user-secret" />
-
                 Password
               </label>
-              <b-form-input type="password"></b-form-input>
+              <b-form-input type="password" v-model="password"></b-form-input>
             </b-col>
           </b-row>
           <b-row align-h="center" class="mx-0 mb-0">
@@ -47,7 +46,10 @@
 <script>
 export default {
   name: "loginView",
-  data: () => ({}),
+  data: () => ({
+    email: null,
+    password: null
+  }),
   beforeCreate() {
   },
   created() {
