@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <ModalView v-if="toggleModal" v-on:close-modal="closeModal"/>
+    <LoadingView v-if="loading" />
     <b-card class="card">
       <b-card-header>
         //image goes here
@@ -18,7 +19,6 @@
           </b-row>
           <b-row align-h="center" class="mx-0 mb-0">
             <b-button class="mt-3 primary" size="sm"  block squared>
-              <b-spinner small></b-spinner>
               Reset Password
             </b-button>
             <router-link :to="{ name: 'login' }">
@@ -35,12 +35,14 @@
 
 <script>
 import ModalView from "@/components/modalView";
+import LoadingView from "@/components/loadingView";
 export default {
   name: "forgetPassword",
-  components: {ModalView},
+  components: {LoadingView, ModalView},
   data: () => ({
     email: null,
-    toggleModal: true,
+    toggleModal: false,
+    loading: false,
     modalMessage: ''
   }),
   beforeCreate() {
