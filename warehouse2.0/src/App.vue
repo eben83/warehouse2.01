@@ -41,9 +41,20 @@ nav {
   color: #ffffff;
 }
 
+.error {
+  text-align: center;
+  font-size: 12px;
+  color: red;
+}
+
 </style>
 
 <script>
+import firebase from "firebase";
+
 export default {
+  created() {
+    console.log(firebase.auth().currentUser.uid)
+  }
 }
 </script>
