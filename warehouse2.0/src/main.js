@@ -5,7 +5,7 @@ import store from './store'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
-import {faBars} from "@fortawesome/free-solid-svg-icons";
+import {faAt, faBars, faUserSecret} from "@fortawesome/free-solid-svg-icons";
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -21,7 +21,7 @@ Vue.filter('dateFilter', function (value) {
 })
 
 library.add(
-    faBars
+    faBars, faAt, faUserSecret
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

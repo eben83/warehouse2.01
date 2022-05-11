@@ -29,6 +29,7 @@ nav {
     }
   }
 }
+
 .link {
   cursor: pointer;
   text-decoration: none;
@@ -39,6 +40,7 @@ nav {
 .link-light {
   color: #ffffff;
 }
+
 </style>
 
 <script>
