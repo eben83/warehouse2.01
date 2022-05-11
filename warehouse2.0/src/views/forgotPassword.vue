@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <ModalView v-if="toggleModal" v-on:close-modal="closeModal"/>
     <b-card class="card">
       <b-card-header>
         //image goes here
@@ -26,7 +27,6 @@
               </b-button>
             </router-link>
           </b-row>
-
         </b-form>
       </b-card-text>
     </b-card>
@@ -34,9 +34,15 @@
 </template>
 
 <script>
+import ModalView from "@/components/modalView";
 export default {
   name: "forgetPassword",
-  data: () => ({}),
+  components: {ModalView},
+  data: () => ({
+    email: null,
+    toggleModal: true,
+    modalMessage: ''
+  }),
   beforeCreate() {
   },
   created() {
@@ -49,7 +55,12 @@ export default {
   },
   updated() {
   },
-  methods: {},
+  methods: {
+    closeModal() {
+      this.toggleModal = !this.toggleModal
+      this.email = null
+    },
+  },
   computed: {},
 }
 </script>
