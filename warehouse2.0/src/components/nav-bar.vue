@@ -30,7 +30,7 @@
                 </router-link>
               </div>
               <div class="option">
-                <router-link :to="{ name: 'admin'}" class="option">
+                <router-link :to="{ name: 'register'}" class="option">
                   <font-awesome-icon class="icon" icon="fas fa-tools" />
                   <p>Admin</p>
                 </router-link>
