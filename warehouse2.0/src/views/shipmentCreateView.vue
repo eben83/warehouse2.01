@@ -28,11 +28,11 @@
 import ModalView from "@/components/modalView";
 
 export default {
-  name: "cargoAddView",
+  name: "shipmentCreate",
   components: {ModalView},
   data: () => ({
     modalActive: false,
-    modalMessage: 'Cargo was saved',
+    modalMessage: 'Shipment was saved',
   }),
   beforeCreate() {
   },

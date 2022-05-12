@@ -6,7 +6,7 @@ import forgotPassword from "@/views/forgotPassword";
 import layoutView from "@/views/layoutView";
 import RegisterView from "@/views/registerView";
 import ProfileView from "@/views/profileView";
-import ShipmentAddView from "@/views/shipmentAddView";
+import ShipmentCreateView from "@/views/shipmentCreateView";
 
 Vue.use(VueRouter)
 
@@ -58,8 +58,8 @@ const routes = [
       },
       {
         path: '/shipment',
-        name: 'shipmentAddView',
-        component: ShipmentAddView,
+        name: 'shipmentCreate',
+        component: ShipmentCreateView,
         meta: {
           title: "Add Shipment"
         },

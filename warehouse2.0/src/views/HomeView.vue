@@ -10,13 +10,13 @@
               </b-col>
               <b-col>
                 <b-col class="text-right">
-                  <router-link :to="{ name: 'shipmentAddView' }">
+                  <router-link :to="{ name: 'shipmentCreate' }">
                     <b-button variant="outline-primary" size="sm" squared>
                       <font-awesome-icon icon="fa-plus" class="mr-1" />
                       Add Entry
                     </b-button>
                   </router-link>
-                  <router-link :to="{ name: 'shipmentAddView' }">
+                  <router-link :to="{ name: 'shipmentCreate' }">
                     <b-button class="ml-3" variant="outline-primary" size="sm" squared>
                       <font-awesome-icon icon="fa-solid fa-truck-ramp-box" />
                       Completed Cargo
