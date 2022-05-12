@@ -18,7 +18,7 @@
           <input type="text" id="dateReceived" >
         </div>
 
-        <button class="btn btn-primary">Save Cargo</button>
+        <button class="btn btn-primary">Save Shipment</button>
       </div>
     </div>
   </div>
@@ -48,10 +48,6 @@ export default {
   },
   methods: {
     closeModal() {
-      this.modalActive = !this.modalActive
-    },
-    updateProfile() {
-      this.$store.dispatch("addCargo")
       this.modalActive = !this.modalActive
     },
   },
