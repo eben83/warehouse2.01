@@ -6,7 +6,6 @@ import forgotPassword from "@/views/forgotPassword";
 import layoutView from "@/views/layoutView";
 import RegisterView from "@/views/registerView";
 import ProfileView from "@/views/profileView";
-import AdminView from "@/views/adminView";
 import ShipmentAddView from "@/views/shipmentAddView";
 
 Vue.use(VueRouter)
@@ -55,14 +54,6 @@ const routes = [
         component: ProfileView,
         meta: {
           title: "Profile"
-        },
-      },
-      {
-        path: '/admin',
-        name: 'admin',
-        component: AdminView,
-        meta: {
-          title: "Admin"
         },
       },
       {
