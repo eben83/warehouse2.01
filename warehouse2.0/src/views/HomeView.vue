@@ -4,26 +4,51 @@
       <b-row>
         <b-col>
           <b-card>
-            <b-table
-                sort-icon-left
-                striped hover
-                :items="cargoTable.dataSource"
-                :fields="cargoTable.tableColumns"
-                :busy="cargoTable.isLoading"
-                :per-page="cargoTable.resultsPerPage"
-                :total-rows="cargoRows"
-                @row-clicked="openCargoEntry"
-                :tbody-tr-class="rowClass"
-                :current-page="cargoTable.currentPage"
-                id="cargoTable"
-            >
-              <template #table-busy>
-                <div class="text-center my-2">
-                  <b-spinner style="width: 3rem; height: 3rem;"></b-spinner>
-                </div>
-              </template>
+            <b-row class="my-3">
+              <b-col>
+                <h4 class="m-0">Warehouse Report</h4>
+              </b-col>
+              <b-col>
+                <b-col class="text-right">
+                  <router-link :to="{ name: 'cargoAddView' }">
+                    <b-button variant="outline-primary" size="sm" squared>
+                      <font-awesome-icon icon="fa-plus" class="mr-1" />
+                      Add Entry
+                    </b-button>
+                  </router-link>
+                  <router-link :to="{ name: 'cargoAddView' }">
+                    <b-button class="ml-3" variant="outline-primary" size="sm" squared>
+                      <font-awesome-icon icon="fa-solid fa-truck-ramp-box" />
+                      Completed Cargo
+                    </b-button>
+                  </router-link>
+                </b-col>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <b-table
+                    sort-icon-left
+                    striped hover
+                    :items="cargoTable.dataSource"
+                    :fields="cargoTable.tableColumns"
+                    :busy="cargoTable.isLoading"
+                    :per-page="cargoTable.resultsPerPage"
+                    :total-rows="cargoRows"
+                    @row-clicked="openCargoEntry"
+                    :tbody-tr-class="rowClass"
+                    :current-page="cargoTable.currentPage"
+                    id="cargoTable"
+                >
+                  <template #table-busy>
+                    <div class="text-center my-2">
+                      <b-spinner style="width: 3rem; height: 3rem;"></b-spinner>
+                    </div>
+                  </template>
 
-            </b-table>
+                </b-table>
+              </b-col>
+            </b-row>
 
             <b-row align-h="center" >
               <b-pagination
