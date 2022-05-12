@@ -9,6 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null,
+    profileAdmin: null,
     profileEmail: null,
     profileFirstName: null,
     profileLastName: null,
@@ -25,6 +26,7 @@ export default new Vuex.Store({
       state.profileFirstName = payload.data().firstName
       state.profileLastName = payload.data().lastName
       state.profileUserName = payload.data().userName
+      state.profileAdmin = payload.data().admin
     },
     changeFirstName(state, payload) {
       this.state.profileFirstName = payload
@@ -56,6 +58,7 @@ export default new Vuex.Store({
       const dbResults = await database.get()
       commit('setProfileInfo', dbResults)
       commit('setProfileInitials')
+      console.log('USER USER', dbResults)
     },
 
     async updateUserSettings({commit, state}) {

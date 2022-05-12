@@ -29,7 +29,7 @@
                   <p>Profile</p>
                 </router-link>
               </div>
-              <div class="option">
+              <div v-if="admin" class="option">
                 <router-link :to="{ name: 'register'}" class="option">
                   <font-awesome-icon class="icon" icon="fas fa-tools" />
                   <p>Admin</p>
@@ -104,6 +104,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.user
+    },
+    admin() {
+      return this.$store.state.profileAdmin
     },
   },
 }
