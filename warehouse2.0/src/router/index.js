@@ -7,6 +7,7 @@ import layoutView from "@/views/layoutView";
 import RegisterView from "@/views/registerView";
 import ProfileView from "@/views/profileView";
 import ShipmentCreateView from "@/views/shipmentCreateView";
+import ClientCreateView from "@/views/clientCreateView";
 
 Vue.use(VueRouter)
 
@@ -62,6 +63,14 @@ const routes = [
         component: ShipmentCreateView,
         meta: {
           title: "Add Shipment"
+        },
+      },
+      {
+        path: '/client',
+        name: 'clientCreateView',
+        component: ClientCreateView,
+        meta: {
+          title: "Add Client"
         },
       },
     ]
