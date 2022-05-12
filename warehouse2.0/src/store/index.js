@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    //user
     user: null,
     profileAdmin: null,
     profileEmail: null,
@@ -16,6 +17,26 @@ export default new Vuex.Store({
     profileUserName: null,
     profileId: null,
     profileInitials: null,
+
+    //clients
+    companyName: null,
+    building: null,
+    officePark: null,
+    addressLine1: null,
+    addressLine2: null,
+    city: null,
+    provence: null,
+    postalCode: null,
+    clientFirstName: null,
+    clientLastName: null,
+    clientMobile: null,
+    clientLandline: null,
+    clientEmail: null,
+    clientSpecialInstructions: null,
+
+    //shipment
+
+    //containers
   },
   mutations: {
 
