@@ -160,3 +160,12 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="scss">
+.home {
+  .card {
+    background-color: transparent;
+    z-index: 0;
+  }
+}
+</style>
