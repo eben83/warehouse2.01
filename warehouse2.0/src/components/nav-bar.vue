@@ -79,7 +79,6 @@ export default {
       }
       this.mobile = false
       this.mobileNav = false
-      // return;
     },
 
     toggleMobileNav() {
@@ -94,6 +93,7 @@ export default {
 
     signOut() {
       firebase.auth().signOut()
+      this.$router.push('/')
       window.location.reload()
     },
   },
