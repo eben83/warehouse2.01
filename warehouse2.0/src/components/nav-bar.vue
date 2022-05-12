@@ -24,13 +24,13 @@
             </div>
             <div class="options">
               <div class="option">
-                <router-link to="/" class="option">
+                <router-link :to="{ name: 'profile'}" class="option">
                   <font-awesome-icon class="icon" icon="fa-solid fa-user" />
                   <p>Profile</p>
                 </router-link>
               </div>
               <div class="option">
-                <router-link to="/" class="option">
+                <router-link :to="{ name: 'admin'}" class="option">
                   <font-awesome-icon class="icon" icon="fas fa-tools" />
                   <p>Admin</p>
                 </router-link>
@@ -253,8 +253,8 @@ header {
     cursor: pointer;
     position: absolute;
     top: 32px;
-    right: 25px;
-    height: 25px;
+    right: 90px;
+    height: 30px;
     width: auto;
   }
   .mobile-nav {
@@ -269,6 +269,7 @@ header {
     top: 0;
     left: 0;
     margin: 0;
+    z-index: 10;
 
     .link {
       padding: 15px 0;
@@ -294,7 +295,5 @@ header {
   }
 
 }
-
-
 
 </style>
