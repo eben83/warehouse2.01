@@ -5,11 +5,12 @@
     <div class="container">
       <h2>Register User</h2>
       <div class="profile-info">
-<!--        <div class="initials"> {{ this.$store.state.profileInitials }}</div>-->
-<!--        <div class="admin-badge">-->
-<!--          <font-awesome-icon class="icon" icon="fas fa-tools" />-->
-<!--          <span>admin</span>-->
-<!--        </div>-->
+        <div class="admin">
+          <span class="mr-3 h4 font-weight-bold">Admin</span>
+          <div class="toggleAdmin">
+            <input type="checkbox" v-model="admin">
+          </div>
+        </div>
         <div class="input">
           <label for="firstName">First Name</label>
           <input type="text" v-model="firstName">
@@ -85,7 +86,8 @@ export default {
         firstName: this.firstName,
         lastName: this.lastName,
         userName: this.userName,
-        email: this.email
+        email: this.email,
+        admin: this.admin
       })
       this.loading = false
       await this.$router.push({name: 'home'})
@@ -121,18 +123,41 @@ export default {
       max-width: 600px;
       margin: 32px auto;
 
-      .initials {
-        position: initial;
-        width: 80px;
-        height: 80px;
-        font-size: 32px;
-        background-color: #303030;
-        color: #ffffff;
+      .admin {
         display: flex;
         align-items: center;
         align-self: center;
         justify-content: center;
-        border-radius: 50%;
+
+        input[type=checkbox] {
+          position: relative;
+          border: none;
+          -webkit-appearance: none;
+          background: #ffffff;
+          outline: none;
+          width: 80px;
+          height: 30px;
+          border-radius: 20px;
+          box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        }
+
+        input[type=checkbox]:before {
+          content: '';
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          border-radius: 20px;
+          top: 0;
+          left: 0;
+          background: red;
+          transform: scale(1,1);
+          transition: 750ms ease all;
+          box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        }
+        input:checked[type=checkbox]:before {
+          background: green;
+          left: 52px;
+        }
       }
 
       .admin-badge {
