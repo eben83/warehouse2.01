@@ -8,6 +8,7 @@ import RegisterView from "@/views/registerView";
 import ProfileView from "@/views/profileView";
 import ShipmentCreateView from "@/views/shipmentCreateView";
 import ClientCreateView from "@/views/clientCreateView";
+import ClientHome from "@/views/clientHome";
 
 Vue.use(VueRouter)
 
@@ -66,11 +67,19 @@ const routes = [
         },
       },
       {
-        path: '/client',
+        path: '/add',
         name: 'clientCreateView',
         component: ClientCreateView,
         meta: {
           title: "Add Client"
+        },
+      },
+      {
+        path: '/client',
+        name: 'clientHome',
+        component: ClientHome,
+        meta: {
+          title: "Client"
         },
       },
     ]
