@@ -5,7 +5,15 @@ import store from './store'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
-import {faAt, faBars, faSignOut, faTools, faUser, faUserSecret} from "@fortawesome/free-solid-svg-icons";
+import {
+    faAt,
+    faBars, faPlus,
+    faSignOut,
+    faTools,
+    faTruckRampBox,
+    faUser,
+    faUserSecret
+} from "@fortawesome/free-solid-svg-icons";
 import firebase from "firebase/app";
 import "firebase/auth"
 
@@ -24,7 +32,7 @@ Vue.filter('dateFilter', function (value) {
 })
 
 library.add(
-    faBars, faAt, faUserSecret, faUser, faTools, faSignOut
+    faBars, faAt, faUserSecret, faUser, faTools, faSignOut, faTruckRampBox, faPlus
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
