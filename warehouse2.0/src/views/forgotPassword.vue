@@ -65,6 +65,7 @@ export default {
       this.toggleModal = !this.toggleModal
       this.email = null
     },
+    //TODO- check the method
     resetPassword() {
       this.loading = true
       firebase.auth().sendPasswordResetEmail(this.email)
