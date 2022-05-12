@@ -77,7 +77,7 @@ export default {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
           .then(() => {
             this.$router.push({name: 'home'})
-            console.log(firebase.auth().currentUser.uid)
+            // console.log(firebase.auth().currentUser.uid)
             this.error = false
             this.errorMsg = ''
           })
