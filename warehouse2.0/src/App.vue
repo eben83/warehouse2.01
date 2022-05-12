@@ -55,7 +55,7 @@ import "firebase/auth"
 
 export default {
   created() {
-    //this is watches for user state changes and then fires off
+    // this is watches for user state changes and then fires off
     firebase.auth().onAuthStateChanged((user) => {
       this.$store.commit('updateUser', user)
       if (user) {

@@ -25,8 +25,11 @@
 </template>
 
 <script>
+import ModalView from "@/components/modalView";
+
 export default {
   name: "cargoAddView",
+  components: {ModalView},
   data: () => ({
     modalActive: false,
     modalMessage: 'Cargo was saved',
