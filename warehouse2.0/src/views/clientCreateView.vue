@@ -8,18 +8,18 @@
         <b-row>
           <b-col class="input">
             <label class="text-center" for="shipmentSupplier">Company Name</label>
-            <input type="text">
+            <input type="text" v-model="companyName">
           </b-col>
         </b-row>
 
         <b-row >
           <b-col class="input">
             <label for="dateCollected">Building</label>
-            <input type="text" >
+            <input type="text" v-model="building">
           </b-col>
           <b-col class="input">
             <label for="dateReceived">Office Park</label>
-            <input type="text" >
+            <input type="text" v-model="officePark">
           </b-col>
         </b-row>
 
@@ -123,7 +123,135 @@ export default {
       this.modalActive = !this.modalActive
     },
   },
-  computed: {},
+  computed: {
+    profileId() {
+      return this.$store.state.profileId
+    },
+
+    companyName: {
+      get() {
+        return this.$store.state.companyName
+      },
+      set(payload) {
+        this.$store.commit('setCompanyName', payload)
+      },
+    },
+    building: {
+      get() {
+        return this.$store.state.building
+      },
+      set(payload) {
+        this.$store.commit('setBuilding', payload)
+      },
+    },
+    officePark: {
+      get() {
+        return this.$store.state.officePark
+      },
+      set(payload) {
+        this.$store.commit('setOfficePark', payload)
+      },
+    },
+
+    addressLine1: {
+      get() {
+        return this.$store.state.addressLine1
+      },
+      set(payload) {
+        this.$store.commit('setAddressLine1', payload)
+      },
+    },
+
+    addressLine2: {
+      get() {
+        return this.$store.state.addressLine2
+      },
+      set(payload) {
+        this.$store.commit('setAddressLine2', payload)
+      },
+    },
+
+    city: {
+      get() {
+        return this.$store.state.city
+      },
+      set(payload) {
+        this.$store.commit('setCity', payload)
+      },
+    },
+
+    provence: {
+      get() {
+        return this.$store.state.provence
+      },
+      set(payload) {
+        this.$store.commit('setProvence', payload)
+      },
+    },
+
+    postalCode: {
+      get() {
+        return this.$store.state.postalCode
+      },
+      set(payload) {
+        this.$store.commit('setPostalCode}', payload)
+      },
+    },
+
+    clientFirstName: {
+      get() {
+        return this.$store.state.clientFirstName
+      },
+      set(payload) {
+        this.$store.commit('setClientFirstName', payload)
+      },
+    },
+
+    clientLastName: {
+      get() {
+        return this.$store.state.clientLastName
+      },
+      set(payload) {
+        this.$store.commit('setClientLastName', payload)
+      },
+    },
+
+    clientMobile: {
+      get() {
+        return this.$store.state.clientMobile
+      },
+      set(payload) {
+        this.$store.commit('setClientMobile', payload)
+      },
+    },
+
+    clientLandline: {
+      get() {
+        return this.$store.state.clientLandline
+      },
+      set(payload) {
+        this.$store.commit('setClientLandline', payload)
+      },
+    },
+
+    clientEmail: {
+      get() {
+        return this.$store.state.clientEmail
+      },
+      set(payload) {
+        this.$store.commit('setClientEmail', payload)
+      },
+    },
+
+    clientSpecialInstructions: {
+      get() {
+        return this.$store.state.clientSpecialInstructions
+      },
+      set(payload) {
+        this.$store.commit('setClientSpecialInstructions', payload)
+      },
+    },
+  },
 }
 </script>
 

@@ -71,6 +71,18 @@ export default new Vuex.Store({
           state.profileFirstName.match(/(\b\S)?/g).join('').toUpperCase() +
           state.profileLastName.match(/(\b\S)?/g).join('').toUpperCase()
     },
+
+    //client Mutations
+    setCompanyName(state, payload) {
+      state.companyName = payload
+    },
+    setBuilding(state, payload) {
+      state.building = payload
+    },
+    setOfficePark(state, payload) {
+      state.officePark = payload
+    },
+    
   },
   actions: {
     async getCurrentUser({commit}) {
