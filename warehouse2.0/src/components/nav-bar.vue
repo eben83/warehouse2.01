@@ -8,7 +8,7 @@
       <div class="nav-links">
         <ul v-show="!mobile">
           <router-link class="link" :to="{name: 'home'}" >Home</router-link>
-          <router-link class="link" :to="{name: 'home'}" >Clients</router-link>
+          <router-link class="link" :to="{name: 'clientCreateView'}" >Clients</router-link>
           <router-link class="link" :to="{name: 'home'}" >Containers</router-link>
         </ul>
         <div v-if="user" @click="toggleProfileMenu" class="profile" ref="profile">
