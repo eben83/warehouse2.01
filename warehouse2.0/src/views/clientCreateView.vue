@@ -3,33 +3,94 @@
     <ModalView v-if="modalActive" :modal-message="modalMessage" v-on:close-modal="closeModal"></ModalView>
     <div class="container">
       <h2>Add Client</h2>
-      <div class="profile-info">
-
-        <div class="d-flex justify-content-between">
-          <div class="input">
-            <label for="shipmentSupplier">Company</label>
+      <div class="company-info">
+        <h3>Company Details</h3>
+        <b-row>
+          <b-col class="input">
+            <label class="text-center" for="shipmentSupplier">Company Name</label>
             <input type="text">
-          </div>
-          <div class="input">
+          </b-col>
+        </b-row>
+
+        <b-row >
+          <b-col class="input">
             <label for="dateCollected">Building</label>
             <input type="text" >
-          </div>
-        </div>
-
-        <div class="d-flex justify-content-between">
-          <div class="input">
+          </b-col>
+          <b-col class="input">
             <label for="dateReceived">Office Park</label>
             <input type="text" >
-          </div>
-          <div class="input">
-            <label for="dateCollected">Building</label>
+          </b-col>
+        </b-row>
+
+        <b-row >
+          <b-col class="input">
+            <label for="dateReceived">Address</label>
             <input type="text" >
-          </div>
-        </div>
+          </b-col>
+          <b-col class="input">
+            <label for="dateCollected">Address</label>
+            <input type="text" >
+          </b-col>
+        </b-row>
 
+        <b-row >
+          <b-col class="input">
+            <label for="dateReceived">City</label>
+            <input type="text" >
+          </b-col>
+          <b-col class="input">
+            <label for="dateCollected">Provence</label>
+            <input type="text" >
+          </b-col>
+        </b-row>
 
+        <b-row >
+          <b-col class="input">
+            <label for="dateReceived">Postal Code</label>
+            <input type="text" >
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <h2>Client Information</h2>
+          </b-col>
+        </b-row>
 
-        <button class="btn btn-primary">Save Cargo</button>
+        <b-row >
+          <b-col class="input">
+            <label for="dateReceived">First Name</label>
+            <input type="text" >
+          </b-col>
+          <b-col class="input">
+            <label for="dateCollected">Last Name</label>
+            <input type="text" >
+          </b-col>
+        </b-row>
+
+        <b-row >
+          <b-col class="input">
+            <label for="dateReceived">Mobile</label>
+            <input type="text" >
+          </b-col>
+          <b-col class="input">
+            <label for="dateCollected">Landline</label>
+            <input type="text" >
+          </b-col>
+        </b-row>
+
+        <b-row >
+          <b-col class="input">
+            <label for="dateReceived">Email</label>
+            <input type="text" >
+          </b-col>
+          <b-col class="input">
+            <label for="dateReceived">Special Instructions</label>
+            <textarea type="text" />
+          </b-col>
+        </b-row>
+
+        <button class="btn btn-primary">Save Client</button>
       </div>
     </div>
   </div>
@@ -41,7 +102,10 @@ import ModalView from "@/components/modalView";
 export default {
   name: "clientCreateView",
   components: {ModalView},
-  data: () => ({}),
+  data: () => ({
+    modalActive: null,
+    modalMessage: null,
+  }),
   beforeCreate() {
   },
   created() {
@@ -76,41 +140,14 @@ export default {
       font-size: 32px;
     }
 
-    .profile-info {
+    .company-info {
       border-radius: 8px;
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
       padding: 32px;
       background-color: #ffffff;
       display: flex;
       flex-direction: column;
-      //max-width: 600px;
       margin: 32px auto;
-
-      .admin {
-        display: flex;
-        align-items: center;
-        align-self: center;
-        justify-content: center;
-      }
-
-      .admin-badge {
-        display: flex;
-        align-self: center;
-        color: #ffffff;
-        font-size: 14px;
-        padding: 8px 24px;
-        border-radius: 8px;
-        background-color: #303030;
-        margin: 16px 0;
-        text-align: center;
-        text-transform: capitalize;
-
-        .icon {
-          width: 14px;
-          height: auto;
-          margin-right: 8px;
-        }
-      }
 
       .input {
         margin: 16px 0;
@@ -121,19 +158,18 @@ export default {
           padding-bottom: 6px;
         }
 
-        input {
+        input, textarea {
           width: 25rem;
           border: none;
           background-color: #f2f7f6;
           padding: 8px;
           height: 50px;
-          @media (min-width: 900px) {
-          }
 
           &:focus {
             outline: none;
           }
         }
+
       }
 
       button {
