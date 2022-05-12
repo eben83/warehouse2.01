@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <ModalView v-if="toggleModal" v-on:close-modal="closeModal"/>
+    <ModalView v-if="toggleModal" :modal-message="modalMessage" v-on:close-modal="closeModal"/>
     <LoadingView v-if="loading" />
     <b-card class="card">
       <b-card-header>
@@ -14,11 +14,11 @@
                 <font-awesome-icon icon="fa-solid fa-at" />
                 Email
               </label>
-              <b-form-input></b-form-input>
+              <b-form-input v-model="email"></b-form-input>
             </b-col>
           </b-row>
           <b-row align-h="center" class="mx-0 mb-0">
-            <b-button class="mt-3 primary" size="sm"  block squared>
+            <b-button @click.prevent="resetPassword" class="mt-3 primary" size="sm"  block squared>
               Reset Password
             </b-button>
             <router-link :to="{ name: 'login' }">
@@ -36,6 +36,9 @@
 <script>
 import ModalView from "@/components/modalView";
 import LoadingView from "@/components/loadingView";
+import firebase from "firebase/app";
+import "firebase/auth"
+
 export default {
   name: "forgetPassword",
   components: {LoadingView, ModalView},
@@ -61,6 +64,20 @@ export default {
     closeModal() {
       this.toggleModal = !this.toggleModal
       this.email = null
+    },
+    resetPassword() {
+      this.loading = true
+      firebase.auth().sendPasswordResetEmail(this.email)
+          .then(() => {
+            this.modalMessage = "If your account is active you'll receive an email"
+            this.loading = false
+            this.toggleModal = true
+          })
+          .catch((err) => {
+            this.modalMessage = err.message
+            this.loading = false
+            this.toggleModal = true
+      })
     },
   },
   computed: {},
