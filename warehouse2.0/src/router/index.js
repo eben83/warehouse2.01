@@ -5,6 +5,8 @@ import loginView from "@/views/loginView";
 import forgotPassword from "@/views/forgotPassword";
 import layoutView from "@/views/layoutView";
 import RegisterView from "@/views/registerView";
+import ProfileView from "@/views/profileView";
+import AdminView from "@/views/adminView";
 
 Vue.use(VueRouter)
 
@@ -44,6 +46,22 @@ const routes = [
         component: RegisterView,
         meta: {
           title: "Register User"
+        },
+      },
+      {
+        path: '/profile',
+        name: 'profile',
+        component: ProfileView,
+        meta: {
+          title: "Profile"
+        },
+      },
+      {
+        path: '/admin',
+        name: 'admin',
+        component: AdminView,
+        meta: {
+          title: "Admin"
         },
       },
     ]
