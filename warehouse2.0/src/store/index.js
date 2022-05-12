@@ -20,13 +20,20 @@ export default new Vuex.Store({
 
     //setting the state from the store to the variables
     setProfileInfo(state, payload) {
-      state.payloadId = payload.id
+      state.profileId = payload.id
       state.profileEmail = payload.data().email
       state.profileFirstName = payload.data().firstName
       state.profileLastName = payload.data().lastName
       state.profileUserName = payload.data().userName
-      console.log('PROFILE STATE',state)
-      console.log('PROFILE STATE',state)
+    },
+    changeFirstName(state, payload) {
+      this.state.profileFirstName = payload
+    },
+    changeLastName(state, payload) {
+      this.state.profileLastName = payload
+    },
+    changeUserName(state, payload) {
+      this.state.profileUserName = payload
     },
 
     //updated user
@@ -49,7 +56,18 @@ export default new Vuex.Store({
       const dbResults = await database.get()
       commit('setProfileInfo', dbResults)
       commit('setProfileInitials')
-      console.log('DbRESULTS', dbResults)
+    },
+
+    async updateUserSettings({commit, state}) {
+      console.log('STATE', state)
+      const database = await db.collection("users").doc(state.profileId)
+      await database.update({
+        firstName: state.profileFirstName,
+        lastName: state.profileLastName,
+        userName: state.profileUserName
+      })
+      //commit will update the current state
+      commit('setProfileInitials')
     },
   },
   modules: {
