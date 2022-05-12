@@ -50,11 +50,19 @@ nav {
 </style>
 
 <script>
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth"
 
 export default {
   created() {
-    console.log(firebase.auth().currentUser.uid)
+    //this is watches for user state changes and then fires off
+    firebase.auth().onAuthStateChanged((user) => {
+      this.$store.commit('updateUser', user)
+      if (user) {
+        this.$store.dispatch('getCurrentUser')
+        console.log('CURRENT', this.$store.state.profileEmail)
+      }
+    })
   }
 }
 </script>
