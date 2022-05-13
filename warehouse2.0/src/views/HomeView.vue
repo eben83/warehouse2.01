@@ -4,9 +4,9 @@
       <b-row>
         <b-col>
           <b-card>
-            <b-row class="my-3">
+            <b-row class="my-3 text-left">
               <b-col>
-                <h4 class="m-0">Warehouse Report</h4>
+                <h4 class="m-0">Shipment Report</h4>
               </b-col>
               <b-col>
                 <b-col class="text-right">

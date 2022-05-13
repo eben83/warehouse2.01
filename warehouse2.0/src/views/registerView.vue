@@ -79,7 +79,7 @@ export default {
       const createUser = await firebaseAuth.createUserWithEmailAndPassword(this.email, this.password)
       //create user gets a response that we add it to result
       const result = await createUser
-      //this then saves to collection user, if its not there it will create the user collection
+      //this then saves to collection user, if it's not there it will create the user collection
       const database = db.collection("users").doc(result.user.uid)
 
       await database.set({
