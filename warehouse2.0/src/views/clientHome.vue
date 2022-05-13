@@ -142,7 +142,6 @@ export default {
   },
   methods: {
     openClient(row) {
-      this.$router.push({ name: 'clientCreateView'})
       this.clientId = row.clientId
       this.companyName = row.companyName
       this.building = row.building
@@ -159,6 +158,7 @@ export default {
       this.clientEmail = row.clientEmail
       this.clientSpecialInstructions = row.clientSpecialInstructions
       console.log("ROW", row)
+      this.$router.push({ name: 'clientEditView'})
     },
   },
   computed: {
@@ -174,6 +174,7 @@ export default {
         return this.$store.state.clientId
       },
       set(payload) {
+        console.log('CLIENT IS PAYLOAD',payload)
         this.$store.commit('setClientId', payload)
       },
     },
