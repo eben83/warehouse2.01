@@ -9,6 +9,7 @@ import ProfileView from "@/views/profileView";
 import ShipmentCreateView from "@/views/shipmentCreateView";
 import ClientCreateView from "@/views/clientCreateView";
 import ClientHome from "@/views/clientHome";
+import ClientEditView from "@/views/clientEditView";
 
 Vue.use(VueRouter)
 
@@ -72,6 +73,14 @@ const routes = [
         component: ClientCreateView,
         meta: {
           title: "Add Client"
+        },
+      },
+      {
+        path: '/edit/:clientId',
+        name: 'clientEditView',
+        component: ClientEditView,
+        meta: {
+          title: "Edit Client"
         },
       },
       {
