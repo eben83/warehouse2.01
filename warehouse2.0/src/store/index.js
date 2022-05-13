@@ -182,27 +182,6 @@ export default new Vuex.Store({
       state.clientsLoaded = true
     },
 
-    async updateClient({state}) {
-      debugger
-      const database = await db.collection("clients").doc(state.clientId)
-      await database.update({
-        companyName: state.companyName,
-        building: state.building,
-        officePark: state.officePark,
-        addressLine1: state.addressLine1,
-        addressLine2: state.addressLine2,
-        city: state.city,
-        provence: state.provence,
-        postalCode: state.postalCode,
-        clientFirstName: state.clientFirstName,
-        clientLastName: state.clientLastName,
-        clientMobile: state.clientMobile,
-        clientLandline: state.clientLandline,
-        clientEmail: state.clientEmail,
-        clientSpecialInstructions: state.clientSpecialInstructions,
-      })
-    }
-
   },
   modules: {
   }
