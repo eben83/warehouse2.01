@@ -6,7 +6,7 @@
       <div class="company-info">
         <h4>Company Details</h4>
         <b-row>
-          <b-col class="input">
+          <b-col cols="6" class="input">
             <label class="text-center" for="companyName">Company Name</label>
             <input type="text" v-model="companyName">
           </b-col>
@@ -46,7 +46,7 @@
         </b-row>
 
         <b-row >
-          <b-col class="input">
+          <b-col cols="6" class="input">
             <label for="postalCode">Postal Code</label>
             <input type="text" v-model="postalCode">
           </b-col>
@@ -167,13 +167,13 @@ export default {
       this.loading = false
       await this.$router.push({ name: "clientHome"})
     },
+
   },
   computed: {
     profileId() {
       return this.$store.state.profileId
-
     },
-
+    
     companyName: {
       get() {
         return this.$store.state.companyName
