@@ -121,6 +121,23 @@ export default {
   },
   updated() {
   },
+  destroyed() {
+    this.$store.state.clientId = null
+    this.$store.state.companyName = null
+    this.$store.state.building = null
+    this.$store.state.officePark = null
+    this.$store.state.addressLine1 = null
+    this.$store.state.addressLine2 = null
+    this.$store.state.city = null
+    this.$store.state.provence = null
+    this.$store.state.postalCode = null
+    this.$store.state.clientFirstName = null
+    this.$store.state.clientLastName = null
+    this.$store.state.clientMobile = null
+    this.$store.state.clientLandline = null
+    this.$store.state.clientEmail = null
+    this.$store.state.clientSpecialInstructions = null
+  },
   methods: {
     closeModal() {
       this.modalActive = !this.modalActive
@@ -148,7 +165,7 @@ export default {
       })
       console.log('POST', this.postalCode)
       this.loading = false
-      console.log('',)
+      await this.$router.push({ name: "clientHome"})
     },
   },
   computed: {
