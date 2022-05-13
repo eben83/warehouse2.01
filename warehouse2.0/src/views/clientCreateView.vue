@@ -1,110 +1,113 @@
 <template>
   <div class="client">
-    <ModalView v-if="modalActive" :modal-message="modalMessage" v-on:close-modal="closeModal"></ModalView>
+    <LoadingView v-if="loading"/>
     <div class="container">
       <h2>Add Client</h2>
       <div class="company-info">
-        <h3>Company Details</h3>
+        <h4>Company Details</h4>
         <b-row>
           <b-col class="input">
-            <label class="text-center" for="shipmentSupplier">Company Name</label>
+            <label class="text-center" for="companyName">Company Name</label>
             <input type="text" v-model="companyName">
           </b-col>
         </b-row>
 
         <b-row >
           <b-col class="input">
-            <label for="dateCollected">Building</label>
+            <label for="building">Building</label>
             <input type="text" v-model="building">
           </b-col>
           <b-col class="input">
-            <label for="dateReceived">Office Park</label>
+            <label for="officePark">Office Park</label>
             <input type="text" v-model="officePark">
           </b-col>
         </b-row>
 
         <b-row >
           <b-col class="input">
-            <label for="dateReceived">Address</label>
-            <input type="text" >
+            <label for="addressLine1">Address</label>
+            <input type="text" v-model="addressLine1">
           </b-col>
           <b-col class="input">
-            <label for="dateCollected">Address</label>
-            <input type="text" >
+            <label for="addressLine2">Address</label>
+            <input type="text" v-model="addressLine2">
           </b-col>
         </b-row>
 
         <b-row >
           <b-col class="input">
-            <label for="dateReceived">City</label>
-            <input type="text" >
+            <label for="city">City</label>
+            <input type="text" v-model="city">
           </b-col>
           <b-col class="input">
-            <label for="dateCollected">Provence</label>
-            <input type="text" >
+            <label for="provence">Provence</label>
+            <input type="text" v-model="provence">
           </b-col>
         </b-row>
 
         <b-row >
           <b-col class="input">
-            <label for="dateReceived">Postal Code</label>
-            <input type="text" >
+            <label for="postalCode">Postal Code</label>
+            <input type="text" v-model="postalCode">
           </b-col>
         </b-row>
+
         <b-row>
           <b-col>
-            <h2>Client Information</h2>
+            <h4>Client Information</h4>
           </b-col>
         </b-row>
 
         <b-row >
           <b-col class="input">
-            <label for="dateReceived">First Name</label>
-            <input type="text" >
+            <label for="clientFirstName">First Name</label>
+            <input type="text" v-model="clientFirstName">
           </b-col>
           <b-col class="input">
-            <label for="dateCollected">Last Name</label>
-            <input type="text" >
+            <label for="clientLastName">Last Name</label>
+            <input type="text" v-model="clientLastName">
           </b-col>
         </b-row>
 
         <b-row >
           <b-col class="input">
-            <label for="dateReceived">Mobile</label>
-            <input type="text" >
+            <label for="clientMobile">Mobile</label>
+            <input type="text" v-model="clientMobile">
           </b-col>
           <b-col class="input">
-            <label for="dateCollected">Landline</label>
-            <input type="text" >
+            <label for="clientLandline">Landline</label>
+            <input type="text" v-model="clientLandline">
           </b-col>
         </b-row>
 
         <b-row >
           <b-col class="input">
-            <label for="dateReceived">Email</label>
-            <input type="text" >
+            <label for="clientEmail">Email</label>
+            <input type="text" v-model="clientEmail">
           </b-col>
           <b-col class="input">
-            <label for="dateReceived">Special Instructions</label>
-            <textarea type="text" />
+            <label for="clientSpecialInstructions">Special Instructions</label>
+            <textarea type="text" v-model="clientSpecialInstructions"/>
           </b-col>
         </b-row>
 
-        <button class="btn btn-primary">Save Client</button>
+        <button @click="saveClient" class="btn btn-primary">Save Client</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ModalView from "@/components/modalView";
 
+import LoadingView from "@/components/loadingView";
+import db from '../firebase/config'
 export default {
   name: "clientCreateView",
-  components: {ModalView},
+  components: {LoadingView},
   data: () => ({
     modalActive: null,
     modalMessage: null,
+    loading: false,
   }),
   beforeCreate() {
   },
@@ -122,10 +125,36 @@ export default {
     closeModal() {
       this.modalActive = !this.modalActive
     },
+    async saveClient() {
+      this.loading = true
+
+      const database = db.collection('clients').doc()
+      await database.set({
+        clientId: database.id,
+        companyName: this.companyName,
+        building: this.building,
+        officePark: this.officePark,
+        addressLine1: this.addressLine1,
+        addressLine2: this.addressLine2,
+        city: this.city,
+        provence: this.provence,
+        postalCode: this.postalCode,
+        clientFirstName: this.clientFirstName,
+        clientLastName: this.clientLastName,
+        clientMobile: this.clientMobile,
+        clientLandline: this.clientLandline,
+        clientEmail: this.clientEmail,
+        clientSpecialInstructions: this.clientSpecialInstructions,
+      })
+      console.log('POST', this.postalCode)
+      this.loading = false
+      console.log('',)
+    },
   },
   computed: {
     profileId() {
       return this.$store.state.profileId
+
     },
 
     companyName: {
@@ -194,7 +223,7 @@ export default {
         return this.$store.state.postalCode
       },
       set(payload) {
-        this.$store.commit('setPostalCode}', payload)
+        this.$store.commit('setPostalCode', payload)
       },
     },
 

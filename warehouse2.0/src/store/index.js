@@ -82,6 +82,39 @@ export default new Vuex.Store({
     setOfficePark(state, payload) {
       state.officePark = payload
     },
+    setAddressLine1(state, payload) {
+      state.addressLine1 = payload
+    },
+    setAddressLine2(state, payload) {
+      state.addressLine2 = payload
+    },
+    setCity(state, payload) {
+      state.city = payload
+    },
+    setProvence(state, payload) {
+      state.provence = payload
+    },
+    setPostalCode(state, payload) {
+      state.postalCode = payload
+    },
+    setClientFirstName(state, payload) {
+      state.clientFirstName = payload
+    },
+    setClientLastName(state, payload) {
+      state.clientLastName = payload
+    },
+    setClientMobile(state, payload) {
+      state.clientMobile = payload
+    },
+    setClientLandline(state, payload) {
+      state.clientLandline = payload
+    },
+    setClientEmail(state, payload) {
+      state.clientEmail = payload
+    },
+    setClientSpecialInstructions(state, payload) {
+      state.clientSpecialInstructions = payload
+    },
     
   },
   actions: {
