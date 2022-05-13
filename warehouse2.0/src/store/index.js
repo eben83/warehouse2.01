@@ -19,6 +19,7 @@ export default new Vuex.Store({
     profileInitials: null,
 
     //clients
+    clientId: null,
     companyName: null,
     building: null,
     officePark: null,
@@ -33,6 +34,12 @@ export default new Vuex.Store({
     clientLandline: null,
     clientEmail: null,
     clientSpecialInstructions: null,
+
+    clients: [],
+    clientsLoaded: false,
+    //cargo
+
+
 
     //shipment
 
@@ -59,7 +66,7 @@ export default new Vuex.Store({
       this.state.profileUserName = payload
     },
 
-    //updated user
+    //updated user, from app.js to keep state change
     updateUser(state, payload) {
       state.user = payload
     },
@@ -73,47 +80,52 @@ export default new Vuex.Store({
     },
 
     //client Mutations
+    setClientId(state, payload) {
+      this.state.clientId = payload
+      console.log('CLIENT STATE', state)
+      console.log('CLIENT PAYLOAD', payload)
+    },
     setCompanyName(state, payload) {
-      state.companyName = payload
+      this.state.companyName = payload
     },
     setBuilding(state, payload) {
-      state.building = payload
+      this.state.building = payload
     },
     setOfficePark(state, payload) {
-      state.officePark = payload
+      this.state.officePark = payload
     },
     setAddressLine1(state, payload) {
-      state.addressLine1 = payload
+      this.state.addressLine1 = payload
     },
     setAddressLine2(state, payload) {
-      state.addressLine2 = payload
+      this.state.addressLine2 = payload
     },
     setCity(state, payload) {
-      state.city = payload
+      this.state.city = payload
     },
     setProvence(state, payload) {
-      state.provence = payload
+      this.state.provence = payload
     },
     setPostalCode(state, payload) {
-      state.postalCode = payload
+      this.state.postalCode = payload
     },
     setClientFirstName(state, payload) {
-      state.clientFirstName = payload
+      this.state.clientFirstName = payload
     },
     setClientLastName(state, payload) {
-      state.clientLastName = payload
+      this.state.clientLastName = payload
     },
     setClientMobile(state, payload) {
-      state.clientMobile = payload
+      this.state.clientMobile = payload
     },
     setClientLandline(state, payload) {
-      state.clientLandline = payload
+      this.state.clientLandline = payload
     },
     setClientEmail(state, payload) {
-      state.clientEmail = payload
+      this.state.clientEmail = payload
     },
     setClientSpecialInstructions(state, payload) {
-      state.clientSpecialInstructions = payload
+      this.state.clientSpecialInstructions = payload
     },
     
   },
@@ -128,7 +140,6 @@ export default new Vuex.Store({
     },
 
     async updateUserSettings({commit, state}) {
-      console.log('STATE', state)
       const database = await db.collection("users").doc(state.profileId)
       await database.update({
         firstName: state.profileFirstName,
@@ -138,6 +149,60 @@ export default new Vuex.Store({
       //commit will update the current state
       commit('setProfileInitials')
     },
+
+    //get clients
+    async getClients({ state}) {
+      const database = await db.collection('clients')
+      const dbResults = await database.get()
+      dbResults.forEach((doc) => {
+        //filter the same clients - so that the same data does not get loaded
+        //will only add new data if it doesn't exist.
+        if (!state.clients.some(client => client.clientId === doc.id)) {
+          const data = {
+            clientId: doc.data().clientId,
+            companyName: doc.data().building,
+            building: doc.data().building,
+            officePark: doc.data().officePark,
+            addressLine1: doc.data().addressLine1,
+            addressLine2: doc.data().addressLine2,
+            city: doc.data().city,
+            provence: doc.data().provence,
+            postalCode: doc.data().postalCode,
+            clientFirstName: doc.data().clientFirstName,
+            clientLastName: doc.data().clientLastName,
+            clientMobile: doc.data().clientMobile,
+            clientLandline: doc.data().clientLandline,
+            clientEmail: doc.data().clientEmail,
+            clientSpecialInstructions: doc.data().clientSpecialInstructions,
+          }
+          state.clients.push(data)
+        }
+      })
+      console.log('CLIENTS STORE', state.clients)
+      state.clientsLoaded = true
+    },
+
+    async updateClient({state}) {
+      debugger
+      const database = await db.collection("clients").doc(state.clientId)
+      await database.update({
+        companyName: state.companyName,
+        building: state.building,
+        officePark: state.officePark,
+        addressLine1: state.addressLine1,
+        addressLine2: state.addressLine2,
+        city: state.city,
+        provence: state.provence,
+        postalCode: state.postalCode,
+        clientFirstName: state.clientFirstName,
+        clientLastName: state.clientLastName,
+        clientMobile: state.clientMobile,
+        clientLandline: state.clientLandline,
+        clientEmail: state.clientEmail,
+        clientSpecialInstructions: state.clientSpecialInstructions,
+      })
+    }
+
   },
   modules: {
   }
